@@ -1,7 +1,9 @@
-abstract class RemoteDataSource{
-  
+// Define an abstract class for the remote data source
+abstract class RemoteDataSource {
+  // Add methods for remote data retrieval here
 }
 
-class RemoteDataSourceImpl implements RemoteDataSource{
-  
+// Implement the remote data source interface
+class RemoteDataSourceImpl implements RemoteDataSource {
+  // Implement the methods for remote data retrieval here
 }

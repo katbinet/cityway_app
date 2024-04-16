@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:city_way/core/error/Failure.dart';
-import 'package:city_way/core/string/failure.dart';
+import '../../../../../core/string/failure_message.dart';
 import 'package:city_way/core/string/messages.dart';
 import 'package:city_way/features/Auth/domain/entities/user.dart';
 import 'package:city_way/features/Auth/domain/usecases/signup_usecase.dart';
@@ -20,7 +20,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
                   emit(ErrorState(message: mapFailureToMessageInfo(failure)));
                 },
                 (user) {
-                  emit(const SuccessState(message: SIGN_IN_SUCCESS_MESSAGE));
+                  emit(const SuccessState(message: signUpSuccessMessage));
                 },
         );
   }});

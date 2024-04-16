@@ -1,3 +1,4 @@
+import 'package:city_way/core/theme/theme_cubit/theme_cubit.dart';
 import 'package:city_way/features/Auth/data/datasource/local_data_source.dart';
 import 'package:city_way/features/Auth/data/datasource/remote_data_source.dart';
 import 'package:city_way/features/Auth/data/repositories/user_repository_implement.dart';
@@ -12,34 +13,34 @@ import 'package:get_it/get_it.dart';
 //Get It Global Instance
 final sl = GetIt.instance;
 
-//!Function To Initilized Get It Dependacy Injections
+//! Function To Initilized Get It Dependacy Injections
 //And Register Classes
 Future<void> init() async {
-
-//!Features - Auth
+//! Features - Auth
 //Bloc
   sl.registerFactory(() => SignupBloc(signUpUseCase: sl()));
   sl.registerFactory(() => SigninBloc(signInUseCase: sl()));
 
-
-  //Usecases
+//Usecases
   sl.registerLazySingleton(() => SignUpUseCase(userRepository: sl()));
   sl.registerLazySingleton(() => SignInUseCase(userRepository: sl()));
 
-  // Reposetories
+// Reposetories
   //sl.registerLazySingleton<UserRepository>(() => UserRepositoryImp(remoteDataSource :sl(), localDataSource: sl()));
-  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImp(firebaseAuth: sl()));
+  sl.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImp(localDataSource: sl(), remoteDataSource: sl()));
 
-  // Datasources
-  sl.registerLazySingleton<RemoteDataSource>( () => RemoteDataSourceImpl());
+// Datasources
+  sl.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
   sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
   // Remote
   // Local
 
+  //sl.registerFactory(() => ThemeCubit());
 
-  //! Core
-
-  //! External
+//! External
   sl.registerLazySingleton(() => FirebaseAuth.instance);
 }
+
+final ThemeCubit themeCubit = ThemeCubit();

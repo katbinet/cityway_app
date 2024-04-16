@@ -1,5 +1,9 @@
 import 'package:city_way/core/resource/color_manger.dart';
+import 'package:city_way/core/resource/font_manger.dart';
 import 'package:flutter/material.dart';
+
+
+//! done all style & size & padding
 
 class CricleLogoWidget extends StatelessWidget {
   final String text;
@@ -7,7 +11,6 @@ class CricleLogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
@@ -17,10 +20,10 @@ class CricleLogoWidget extends StatelessWidget {
           ],
         ),
         Text(text,
-                  style: TextStyle(
-                      color: AppColorManger.secondaryAppColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: size.width * 0.1)),
+            style: TextStyle(
+                color: AppColorManger.secondaryAppColor,
+                fontWeight: FontWeightManger.boldWeight,
+                fontSize: FontSizeManger.fs24)),
       ],
     );
   }

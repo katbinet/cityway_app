@@ -1,8 +1,10 @@
 import 'package:city_way/core/util/snackbar_message.dart';
 import 'package:city_way/features/Auth/presentation/bloc/signin_bloc/signin_bloc.dart';
-import 'package:city_way/features/Auth/presentation/widgets/FormSignIn.dart';
+import 'package:city_way/features/Auth/presentation/widgets/form_signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+//! done Size...
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -16,29 +18,23 @@ class SignInPage extends StatelessWidget {
 
   Widget _buildBody() {
     return SingleChildScrollView(
-      child: Stack(children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BlocBuilder<SigninBloc, SigninState>(builder: ((context, state) {
-            return FormSignIn();
-          }))
-          /*BlocConsumer<SigninBloc, SigninState>(listener: (context, State) {
-            if (State is SuccessState) {
+      child: Stack(
+        children: [
+          BlocConsumer<SigninBloc, SigninState>(listener: (context, state) {
+            if (state is SuccessState) {
               SnackBarMessage()
-                  .showSuccessSnackBar(message: State.message, context: context);
-            } else if (State is ErrorState) {
+                  .showSuccessSnackBar(message: state.message, context: context);
+            } else if (state is ErrorState) {
               SnackBarMessage()
-                  .showErrorSnackBar(message: State.message, context: context);
+                  .showErrorSnackBar(message: state.message, context: context);
             }
-          }, builder: (context, State) {
+          }, builder: (context, state) {
             //if(State is LoadingState){
             //print("loading");
             //return LoadingWidget();
             // }
             return FormSignIn();
           }),
-          */
-        )
       ]),
     );
   }

@@ -1,9 +1,14 @@
 import 'package:city_way/core/resource/color_manger.dart';
-import 'package:city_way/core/util/btnInfiniteWidth.dart';
+import 'package:city_way/core/resource/font_manger.dart';
+import 'package:city_way/core/resource/size_manger.dart';
+import 'package:city_way/core/util/btn_infinite_width.dart';
 import 'package:city_way/core/util/enum.dart';
 import 'package:city_way/features/Auth/presentation/widgets/Text_Form_Field_Widget.dart';
 import 'package:city_way/features/Auth/presentation/widgets/circle_logo_widget.dart';
 import 'package:flutter/material.dart';
+
+
+//! done style & padding & size
 
 class ConfirmPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -12,7 +17,6 @@ class ConfirmPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
           child: Stack(children: [
@@ -22,21 +26,26 @@ class ConfirmPage extends StatelessWidget {
           children: [
             const CricleLogoWidget(text: 'Confirm account'),
             Padding(
-              padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+              padding: const EdgeInsets.only(
+                  top: AppPaddingManger.p40,
+                  left: AppPaddingManger.p10,
+                  right:  AppPaddingManger.p10),
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
+                     Text(
                       'Enter the code sent to your number',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeightManger.boldWeight,
+                        fontSize: FontSizeManger.fs18,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20,bottom: 40),
+                      padding: const EdgeInsets.only(
+                          top: AppPaddingManger.p30 , bottom: AppPaddingManger.p40),
                       child: TextFormFieldWidget(
                         controller: _codeController,
                         name: 'Code',
@@ -45,7 +54,9 @@ class ConfirmPage extends StatelessWidget {
                       ),
                     ),
                     Btn(
-                      onPressed: _confirm,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/homeLayout');
+                      },
                       text: 'Confirm',
                       color: AppColorManger.mainAppColor,
                     ),
@@ -60,4 +71,4 @@ class ConfirmPage extends StatelessWidget {
   }
 }
 
-void _confirm() {}
+//void _confirm() {}
